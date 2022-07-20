@@ -1,20 +1,25 @@
-<h1>Agregar Heroe <small>asd</small>></h1>
+<h1>Agregar Heroe <small>{{heroe.superhero}}</small></h1>
 
-<div fxLayout="row" fxLayoutGap="40px">
+<div fxLayout="row" fxLayoutGap="40px" fxLayout.xs="column">
 
     <div fxFlex="50" fxLayout="column">
 
-        <div fxLayout="row" fxLayoutGap="40px">
+        <div fxLayout="row" 
+        fxLayout.xs="column"
+            fxLayoutGap="20px">
 
-            <mat-form-field fxFlex="100">
+            <mat-form-field fxFlex="100"
+            fxLayout.xs="column">
                 <mat-label>Super Heroe</mat-label>
-                <input matInput input="text" required>
+                <input matInput input="text"
+                [(ngModel)]="heroe.superhero"
+                required>
             </mat-form-field>
 
             
             <mat-form-field fxFlex="100">
                 <mat-label>Alter Ego</mat-label>
-                <input matInput input="text" required>
+                <input matInput input="text"  [(ngModel)]="heroe.alter_ego" required>
             </mat-form-field>
 
         </div>
@@ -23,18 +28,18 @@
 
         <mat-form-field fxFlex="100">
             <mat-label>Primera Aparición</mat-label>
-            <input matInput input="text" required>
+            <input matInput input="text"  [(ngModel)]="heroe.first_appearance" required>
         </mat-form-field>
 
         
         <mat-form-field fxFlex="100">
             <mat-label>Personajes</mat-label>
-            <input matInput input="text" required>
+            <input matInput input="text"  [(ngModel)]="heroe.characters" required>
         </mat-form-field>
 
 
 
-        <mat-form-field fxFlex="100">
+        <mat-form-field  [(ngModel)]="heroe.publisher" required>
             <mat-label>Creadores</mat-label>
           <mat-select>
             <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{publisher.desc}}</mat-option>
@@ -44,11 +49,13 @@
   
         <mat-form-field fxFlex="100">
             <mat-label>Foto URL</mat-label>
-            <input matInput input="text" type="url" required>
+            <input matInput input="text" type="url"  [(ngModel)]="heroe.alt_img" required>
         </mat-form-field>
         <br>
 
-        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button color="primary"
+            (click)="guardar()"
+        >Guardar</button>
 
     </div>
 
