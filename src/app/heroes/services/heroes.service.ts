@@ -4,14 +4,15 @@ import { Observable } from 'rxjs';
 import { Heroe } from '../interfaces/heroes.interface';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
 
-  private baseUrl: string = "http://localhost:3000";
+private baseUrl: string = "http://localhost:3000";
 
-  constructor( private http : HttpClient) { }
+constructor( private http : HttpClient) { }
 
 getHeroes(): Observable<Heroe[]>{
   return this.http.get<Heroe[]>(`${this.baseUrl}/heroes`)
@@ -27,6 +28,10 @@ getSugerencias (termino: string) : Observable<Heroe[]>{
 
 agregarHeroe(heroe : Heroe):Observable<Heroe>{
   return this.http.post<Heroe>(`${this.baseUrl}/heroes`,heroe)
+}
+
+actualizarHeroe(heroe : Heroe):Observable<Heroe>{
+  return this.http.put<Heroe>(`${this.baseUrl}/heroes/${heroe.id}`,heroe)
 }
 }
 

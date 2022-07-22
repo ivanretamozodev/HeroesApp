@@ -11,7 +11,7 @@
             <mat-form-field fxFlex="100"
             fxLayout.xs="column">
                 <mat-label>Super Heroe</mat-label>
-                <input matInput input="text"
+                <input matInput input="text" 
                 [(ngModel)]="heroe.superhero"
                 required>
             </mat-form-field>
@@ -19,7 +19,7 @@
             
             <mat-form-field fxFlex="100">
                 <mat-label>Alter Ego</mat-label>
-                <input matInput input="text"  [(ngModel)]="heroe.alter_ego" required>
+                <input matInput input="text" [(ngModel)]="heroe.alter_ego" required>
             </mat-form-field>
 
         </div>
@@ -28,18 +28,18 @@
 
         <mat-form-field fxFlex="100">
             <mat-label>Primera Aparición</mat-label>
-            <input matInput input="text"  [(ngModel)]="heroe.first_appearance" required>
+            <input matInput input="text"   [(ngModel)]="heroe.first_appearance" required>
         </mat-form-field>
 
         
         <mat-form-field fxFlex="100">
             <mat-label>Personajes</mat-label>
-            <input matInput input="text"  [(ngModel)]="heroe.characters" required>
+            <input matInput input="text" [(ngModel)]="heroe.characters" required>
         </mat-form-field>
 
 
 
-        <mat-form-field  [(ngModel)]="heroe.publisher" required>
+        <mat-form-field [(ngModel)]="heroe.publisher" required>
             <mat-label>Creadores</mat-label>
           <mat-select>
             <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">{{publisher.desc}}</mat-option>
@@ -49,7 +49,7 @@
   
         <mat-form-field fxFlex="100">
             <mat-label>Foto URL</mat-label>
-            <input matInput input="text" type="url"  [(ngModel)]="heroe.alt_img" required>
+            <input matInput input="text" type="url"[(ngModel)]="heroe.alt_img" required>
         </mat-form-field>
         <br>
 
