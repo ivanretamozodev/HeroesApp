@@ -20,13 +20,13 @@ export class AgregarComponent implements OnInit {
     }
   ]
 
-  heroe : Heroe = {
-    superhero: "",
-    alter_ego: "",
-    characters: "",
-    first_appearance: "",
+  heroe: Heroe = {
+    superhero: '',
+    alter_ego: '',
+    characters: '',
+    first_appearance: '',
     publisher: Publisher.DCComics,
-    alt_img: "",
+    alt_img: '',
   }
 
   constructor(private HeroesService : HeroesService,
@@ -34,13 +34,15 @@ export class AgregarComponent implements OnInit {
      private router : Router) { }
 
   ngOnInit(): void {
+    if( !this.router.url.includes('editar') ) {
+      return;
+    }
 
     this.activatedRoute.params
-    .pipe(
-      switchMap( ({id}) => this.HeroesService.getHeroePorId(id) )
-    )
-    .subscribe( (resp) => this.heroe = resp
-    )
+      .pipe(
+        switchMap( ({id}) => this.HeroesService.getHeroePorId( id ) )
+      )
+      .subscribe( heroe => this.heroe = heroe );
 
   }
 
