@@ -79,11 +79,11 @@
         
             <span class="spacer"></span>
 
-            <button *ngIf="heroe.id"
+            <button (click)="borrarHeroe()" *ngIf="heroe.id"
                     mat-raised-button
                     
                     color="warn">
-                <mat-icon>remove</mat-icon>
+            <mat-icon>remove</mat-icon>
                 Borrar
             </button>
         </div>
