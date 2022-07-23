@@ -1,7 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { switchMap } from "rxjs/operators";
 
 @Component({
@@ -31,7 +32,8 @@ export class AgregarComponent implements OnInit {
 
   constructor(private HeroesService : HeroesService,
      private activatedRoute : ActivatedRoute,
-     private router : Router) { }
+     private router : Router,
+     private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     if( !this.router.url.includes('editar') ) {
@@ -54,12 +56,15 @@ export class AgregarComponent implements OnInit {
     if (this.heroe.id) {
       //actualiza el heroe
       this.HeroesService.actualizarHeroe(this.heroe)
-      .subscribe( resp => console.log(resp)
+      .subscribe( resp => this.mostrarSnackBar('Se ha Actualizado el Heroe! 😁')
       )
     }else{
       //crea un heroe
-      this.HeroesService.agregarHeroe(this.heroe).subscribe(heroe => 
-        this.router.navigate(['/heroes/editar', heroe.id]) )
+      this.HeroesService.agregarHeroe(this.heroe).subscribe(heroe => {
+        this.router.navigate(['/heroes/editar', heroe.id])
+        this.mostrarSnackBar('se ha creado el heroe')
+        this.router.navigate(['/heroes/listado'])
+      })
     }
 
   }
@@ -69,5 +74,9 @@ export class AgregarComponent implements OnInit {
     .subscribe( resp => this.router.navigate(["/heroes"]))
   }
   
-
+  mostrarSnackBar(mensaje: string): void{
+    this.snackBar.open(mensaje, 'Cerrar',{
+      duration: 2000
+    })
+  }
 }
