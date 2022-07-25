@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.service';
+import { Auth } from '../../../auth/interfaces/auth.interface';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-  constructor( private route : Router) { }
+  get auth(): Auth{
+    return this.authservice.authData
+  }
+
+  constructor( private route : Router,
+               private authservice : AuthService) { }
 
   logout(){
     this.route.navigate(['./auth'])
