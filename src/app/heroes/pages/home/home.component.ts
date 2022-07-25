@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,11 @@ import { Component, OnInit } from '@angular/core';
   }
   `]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  constructor() { }
+  constructor( private route : Router) { }
 
-  ngOnInit(): void {
+  logout(){
+    this.route.navigate(['./auth'])
   }
-
 }
